@@ -17,6 +17,9 @@ public class playerScript : MonoBehaviour {
 	public Image map1, map2, map3, finishedMap, mapBorder;
 
 	int timer = 0;
+	int swingNum = 0;
+
+	public GameObject sword;
 
 	// enemy hit collider
 	void OnTriggerEnter(Collider other) {
@@ -70,6 +73,14 @@ public class playerScript : MonoBehaviour {
 
 		if (Input.GetButtonDown ("Fire1")) {
 			if (playerAmmo > 0) {
+				if (swingNum == 0) {				
+					sword.GetComponent<Animator> ().SetTrigger ("swing1");
+					swingNum = 1;
+				} else {
+					sword.GetComponent<Animator> ().SetTrigger ("swing2");
+					swingNum = 0;
+				}
+
 				playerAmmo--;
 				middleAmmo.fillAmount = playerAmmo / maxAmmo;
 			}
