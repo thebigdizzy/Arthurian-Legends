@@ -21,11 +21,12 @@ public class playerScript : MonoBehaviour {
 
 	public GameObject sword;
 
+	public GameObject enemy1, enemy2, enemy3, Boss;
+
 	// enemy hit collider
 	void OnTriggerEnter(Collider other) {
-
 		// if the other object in the collision was the enemy
-		if (other.tag == "Enemy") {
+		if (other.tag == "Fire") {
 			// take away the player's health
 			playerHealth -= 5.0f;
 
@@ -37,19 +38,30 @@ public class playerScript : MonoBehaviour {
 
 				Debug.Log ("Player is dead");
 			}
+
+			Destroy (other.gameObject);
 		}
 
 		// map pieces hit collider
 		if (other.tag == "mapPiece") {
-			other.gameObject.active = false;
+			other.gameObject.GetComponent<SphereCollider> ().enabled = false;
+			other.gameObject.GetComponent<MeshRenderer> ().enabled = false;
 			mapNum++;
+		}
+
+		if (other.tag == "enemyBody") {
+			enemy1.GetComponent<enemyScript>().enemyHealth -= 20;
+
+			if (enemy1.GetComponent<enemyScript> ().enemyHealth <= 0) {
+				Destroy (enemy1);
+			}
 		}
 	}
 
 	// enemy stay function
 	void OnTriggerStay(Collider other){
 		if (other.tag == "Enemy") {
-			playerHealth -= 1;
+			//playerHealth -= 1;
 
 			middleImage.fillAmount = playerHealth / maxHealth;
 

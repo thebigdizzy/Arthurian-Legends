@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemy
   - mapPiece
+  - Fire
+  - enemyBody
   layers:
   - Default
   - TransparentFX
