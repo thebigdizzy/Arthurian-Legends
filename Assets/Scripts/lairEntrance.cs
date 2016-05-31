@@ -3,7 +3,7 @@ using System.Collections;
 
 public class lairEntrance : MonoBehaviour {
 
-	public GameObject dragon, t1, t2, t3, t4, t5, t6, t7, t8;
+	public GameObject dragon, dragonCasing, t1, t2, t3, t4, t5, t6, t7, t8;
 
 	// function that will start the animations on all of the trees
 	void OnTriggerEnter(Collider other){
@@ -16,7 +16,8 @@ public class lairEntrance : MonoBehaviour {
 			t6.GetComponent<Animator> ().SetTrigger ("burn");
 			t7.GetComponent<Animator> ().SetTrigger ("burn");
 			t8.GetComponent<Animator> ().SetTrigger ("burn");
-			dragon.GetComponent<Animator> ().SetTrigger ("rise");
+            dragonCasing.GetComponent<Animator> ().SetTrigger ("rise");
+            dragon.GetComponent<bossScript>().active = true;
 		}
 	}
 

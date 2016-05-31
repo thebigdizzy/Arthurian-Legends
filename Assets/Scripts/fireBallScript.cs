@@ -14,7 +14,7 @@ public class fireBallScript : MonoBehaviour {
 	void Update () {
 		timer++;
 
-		if (timer > 50) {
+		if (timer > 300) {
 			Destroy (gameObject);
 		}
 
