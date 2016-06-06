@@ -23,8 +23,10 @@ public class playerScript : MonoBehaviour {
 
 	public GameObject enemy1, enemy2, enemy3, Boss;
 
-	// enemy hit collider
-	void OnTriggerEnter(Collider other) {
+    public bool z1, z2, z3, zB;
+    
+    // enemy hit collider
+    void OnTriggerEnter(Collider other) {
 		// if the other object in the collision was the enemy
 		if (other.tag == "Fire") {
 			// take away the player's health
@@ -44,31 +46,61 @@ public class playerScript : MonoBehaviour {
 
 		// map pieces hit collider
 		if (other.tag == "mapPiece") {
-			other.gameObject.GetComponent<SphereCollider> ().enabled = false;
-			other.gameObject.GetComponent<MeshRenderer> ().enabled = false;
 			mapNum++;
+            other.gameObject.GetComponent<mapPieceScript>().active = false;
+            other.gameObject.SetActive(false);
 		}
-
-		if (other.tag == "enemyBody") {
-			enemy1.GetComponent<enemyScript>().enemyHealth -= 20;
-
-			if (enemy1.GetComponent<enemyScript> ().enemyHealth <= 0) {
-				Destroy (enemy1);
-			}
-		}
+        // check to see if the sword in in swing
+        if (sword.GetComponent<swordScript>().swinging == true)
+        {
+            if (other.tag == "enemyBody1") {
+                enemy1.GetComponent<enemyScript>().enemyHealth -= 10;
+                sword.GetComponent<swordScript>().swinging = false;
+            }
+            if (other.tag == "enemyBody2")
+            {
+                enemy2.GetComponent<enemyScript>().enemyHealth -= 10;
+                sword.GetComponent<swordScript>().swinging = false;
+            }
+            if (other.tag == "enemyBody3")
+            {
+                enemy3.GetComponent<enemyScript>().enemyHealth -= 10;
+                sword.GetComponent<swordScript>().swinging = false;
+            }
+            if (other.tag == "bossEnemy")
+            {
+                Boss.GetComponent<bossScript>().enemyHealth -= 10;
+                sword.GetComponent<swordScript>().swinging = false;
+            }
+        }
 	}
 
 	// enemy stay function
 	void OnTriggerStay(Collider other){
-		if (other.tag == "Enemy") {
-			//playerHealth -= 1;
+        // check to see if the sword in in swing
+        if (sword.GetComponent<swordScript>().swinging == true)
+        {
+            if (other.tag == "enemyBody1") {
+                enemy1.GetComponent<enemyScript>().enemyHealth -= 10;
 
-			middleImage.fillAmount = playerHealth / maxHealth;
-
-			if (playerHealth <= 0) {
-				Debug.Log ("Player is dead");
-			}
-		}
+                sword.GetComponent<swordScript>().swinging = false;              
+            }
+            if (other.tag == "enemyBody2")
+            {
+                enemy2.GetComponent<enemyScript>().enemyHealth -= 10;
+                sword.GetComponent<swordScript>().swinging = false;
+            }
+            if (other.tag == "enemyBody3")
+            {
+                enemy3.GetComponent<enemyScript>().enemyHealth -= 10;
+                sword.GetComponent<swordScript>().swinging = false;
+            }
+            if (other.tag == "bossEnemy")
+            {
+                Boss.GetComponent<bossScript>().enemyHealth -= 10;
+                sword.GetComponent<swordScript>().swinging = false;
+            }
+        }
 	}
 
 	// Use this for initialization
@@ -77,11 +109,16 @@ public class playerScript : MonoBehaviour {
 		map2.enabled = false;
 		map3.enabled = false;
 		finishedMap.enabled = false;
-	
+        z1 = false;
+        z2 = false;
+        z3 = false;
+        zB = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+        middleImage.fillAmount = playerHealth / maxHealth;
 
 		if (Input.GetButtonDown ("Fire1")) {
 			if (playerAmmo > 0) {

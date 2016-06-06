@@ -4,6 +4,7 @@ using System.Collections;
 public class dragonCasingAnim : MonoBehaviour {
 
     public GameObject dragon;
+    public bool isBoss = false;
 
     // custom function that will make the dragon fly
     void flyOn()
@@ -19,6 +20,13 @@ public class dragonCasingAnim : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+
+        if (isBoss)
+        {
+            if (dragon.GetComponent<bossScript>().enemyHealth <= 0)
+            {
+                gameObject.GetComponent<Animator>().SetTrigger("leave");
+            }
+        } 
 	}
 }

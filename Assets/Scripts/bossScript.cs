@@ -47,13 +47,7 @@ public class bossScript : MonoBehaviour
     // ontrigger enter function
     void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
-        {
-            if (!flying)
-            {
-                enemyHealth -= 20;
-            }
-        }
+       
     }
 
     // Use this for initialization
@@ -71,9 +65,9 @@ public class bossScript : MonoBehaviour
             transform.LookAt(player.transform.position);
         }
 
-        if(enemyHealth <= 0)
-        {
-            gameObject.SetActive(false);
-        }
+        //if(enemyHealth <= 0)
+        //{
+        //    gameObject.SetActive(false);
+        //}
     }
 }
