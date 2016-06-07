@@ -13,6 +13,11 @@ public class dragonCasingAnim : MonoBehaviour {
         dragon.GetComponent<bossScript>().flying = true;
     }
 
+	// custom function for winning condition
+	void Win(){
+		Application.LoadLevel ("Win");
+	}
+
 	// Use this for initialization
 	void Start () {
 	

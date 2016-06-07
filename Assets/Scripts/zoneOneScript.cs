@@ -44,7 +44,7 @@ public class zoneOneScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (active) {
-			if (player.GetComponent<playerScript> ().playerHealth <= 80) {
+			if (player.GetComponent<playerScript> ().playerHealth <= 50) {
 				if (!hPUActive) {
 					int drop = Random.Range (0, 2);
 					hPUActive = true;

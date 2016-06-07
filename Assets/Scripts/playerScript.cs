@@ -24,13 +24,20 @@ public class playerScript : MonoBehaviour {
 	public GameObject enemy1, enemy2, enemy3, Boss;
 
     public bool z1, z2, z3, zB;
+
+	public GameObject bossZone;
     
     // enemy hit collider
     void OnTriggerEnter(Collider other) {
 		// if the other object in the collision was the enemy
 		if (other.tag == "Fire") {
-			// take away the player's health
-			playerHealth -= 5.0f;
+			if (bossZone.GetComponent<zoneOneScript> ().active == true) {
+				// take away the player's health
+				playerHealth -= 50.0f;
+			} else {
+				// take away the player's health
+				playerHealth -= 20.0f;
+			}
 
 			// shrink the middle image health graphic to show the new amount of health
 			middleImage.fillAmount = playerHealth/maxHealth;
@@ -39,6 +46,8 @@ public class playerScript : MonoBehaviour {
 			if (playerHealth <= 0) {
 
 				Debug.Log ("Player is dead");
+
+				Application.LoadLevel ("Lose");
 			}
 
 			Destroy (other.gameObject);
@@ -54,22 +63,22 @@ public class playerScript : MonoBehaviour {
         if (sword.GetComponent<swordScript>().swinging == true)
         {
             if (other.tag == "enemyBody1") {
-                enemy1.GetComponent<enemyScript>().enemyHealth -= 20;
+                enemy1.GetComponent<enemyScript>().enemyHealth -= 10;
                 sword.GetComponent<swordScript>().swinging = false;
             }
             if (other.tag == "enemyBody2")
             {
-                enemy2.GetComponent<enemyScript>().enemyHealth -= 20;
+                enemy2.GetComponent<enemyScript>().enemyHealth -= 10;
                 sword.GetComponent<swordScript>().swinging = false;
             }
             if (other.tag == "enemyBody3")
             {
-                enemy3.GetComponent<enemyScript>().enemyHealth -= 20;
+                enemy3.GetComponent<enemyScript>().enemyHealth -= 10;
                 sword.GetComponent<swordScript>().swinging = false;
             }
             if (other.tag == "bossEnemy")
             {
-                Boss.GetComponent<bossScript>().enemyHealth -= 40;
+                Boss.GetComponent<bossScript>().enemyHealth -= 5;
                 sword.GetComponent<swordScript>().swinging = false;
             }
         }
@@ -81,23 +90,23 @@ public class playerScript : MonoBehaviour {
         if (sword.GetComponent<swordScript>().swinging == true)
         {
             if (other.tag == "enemyBody1") {
-                enemy1.GetComponent<enemyScript>().enemyHealth -= 20;
+                enemy1.GetComponent<enemyScript>().enemyHealth -= 10;
 
                 sword.GetComponent<swordScript>().swinging = false;              
             }
             if (other.tag == "enemyBody2")
             {
-                enemy2.GetComponent<enemyScript>().enemyHealth -= 20;
+                enemy2.GetComponent<enemyScript>().enemyHealth -= 10;
                 sword.GetComponent<swordScript>().swinging = false;
             }
             if (other.tag == "enemyBody3")
             {
-                enemy3.GetComponent<enemyScript>().enemyHealth -= 20;
+                enemy3.GetComponent<enemyScript>().enemyHealth -= 10;
                 sword.GetComponent<swordScript>().swinging = false;
             }
             if (other.tag == "bossEnemy")
             {
-                Boss.GetComponent<bossScript>().enemyHealth -= 40;
+                Boss.GetComponent<bossScript>().enemyHealth -= 5;
                 sword.GetComponent<swordScript>().swinging = false;
             }
         }
