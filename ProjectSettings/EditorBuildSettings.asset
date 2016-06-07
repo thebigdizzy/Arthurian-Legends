@@ -4,4 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 0
+    path: C:/Users/thebigdizzy/Downloads/Daniel_Trayler_1303_lecture10/Daniel_Trayler_1303_lecture10/Assets/Scenes/Win.unity
+  - enabled: 1
+    path: Assets/Scenes/Start.unity
+  - enabled: 1
+    path: Assets/Scenes/Exterior.unity
+  - enabled: 1
+    path: Assets/Scenes/Win.unity
+  - enabled: 1
+    path: Assets/Scenes/Lose.unity
